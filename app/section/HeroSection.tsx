@@ -69,7 +69,7 @@ const HeroSection = () => {
     <>
       {isOpen && <LightBox setIsOpen={setIsOpen} />}
 
-      <div className="flex flex-col lg:flex-row items-center sm:pt-10 sm:px-8 gap-10">
+      <div className="flex flex-col lg:flex-row items-center sm:pt-10 sm:px-8 gap-20 pb-14">
         <div className="flex flex-col items-center sm:items-start gap-6 flex-initial">
           <div
             className={`max-sm:relative flex items-center ${
@@ -86,7 +86,7 @@ const HeroSection = () => {
                 alt="product-image"
                 height={700}
                 width={400}
-                className="sm:rounded-xl sm:w-[400px] w-[700px]"
+                className="sm:rounded-xl sm:w-[450px] w-[700px]"
               />
             </button>
             <BiChevronRight
@@ -123,7 +123,7 @@ const HeroSection = () => {
                 <Image
                   src={image}
                   alt="image-thumbnail"
-                  width={80}
+                  width={90}
                   height={80}
                   className={`rounded-lg hidden sm:flex filte ${
                     index === isSelected && "opacity-30"
@@ -137,7 +137,8 @@ const HeroSection = () => {
             ))}
           </div>
         </div>
-        <div className="flex flex-col flex-1">
+
+        <div className="flex flex-col lg:max-w-[450px]">
           <span className="text-[#FF7D1A] font-bold text-xs pb-5">
             SNEAKER COMPANY
           </span>
