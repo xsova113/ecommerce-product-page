@@ -1,16 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import CartBox from "./CartBox";
 import { useStateContext } from "../context/StateContext";
 
 const NavBar = () => {
   const navItems = ["Collections", "Men", "Women", "About", "Contact"];
-  const [open, setOpen] = useState(false);
-  // const [cartOpen, setCartOpen] = useState(false);
-  const { qty, cartOpen, setCartOpen } = useStateContext();
+
+  const { qty, cartOpen, setCartOpen, open, setOpen } = useStateContext();
 
   return (
     <>
@@ -21,7 +19,7 @@ const NavBar = () => {
       <div className="pb-8">
         <div
           className={`bg-[#000000]/75 absolute inset-0 -z-10 ${
-            open ? "opacity-100" : "opacity-0"
+            open ? "opacity-100 z-0" : "opacity-0"
           } ease-in-out duration-300`}
           onClick={() => setOpen(false)}
         />

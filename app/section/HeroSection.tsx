@@ -25,7 +25,7 @@ const HeroSection = () => {
     "/images/image-product-4-thumbnail.jpg",
   ];
 
-  const { qty, setQty, cartOpen } = useStateContext();
+  const { qty, setQty, cartOpen, open, setOpen } = useStateContext();
   const [data, setData] = useState<dataType>();
   const [itemNumber, setItemNumber] = useState(0);
   const [selectedImg, setSelectedImg] = useState(1);
@@ -73,7 +73,7 @@ const HeroSection = () => {
         <div className="flex flex-col items-center sm:items-start gap-6 flex-initial">
           <div
             className={`max-sm:relative flex items-center ${
-              cartOpen && "-z-10"
+              (cartOpen || open) && "-z-20"
             }`}
           >
             <button
