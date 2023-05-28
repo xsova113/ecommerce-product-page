@@ -134,7 +134,7 @@ const HeroSection = () => {
           </h1>
           <p className="text-gray-500/80 pb-6">
             These low-profile sneakers are your perfect casual wear companion.
-            Featuring a durable rubber outer sole, they'll withstand everything
+            Featuring a durable rubber outer sole, they&apos;ll withstand everything
             the weather can offer.
           </p>
           <div className="flex flex-row lg:flex-col justify-between">
