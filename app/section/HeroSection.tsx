@@ -25,7 +25,7 @@ const HeroSection = () => {
     "/images/image-product-4-thumbnail.jpg",
   ];
 
-  const { setQty } = useStateContext();
+  const { qty, setQty, cartOpen } = useStateContext();
   const [data, setData] = useState<dataType>();
   const [itemNumber, setItemNumber] = useState(0);
   const [selectedImg, setSelectedImg] = useState(1);
@@ -52,6 +52,14 @@ const HeroSection = () => {
     setScreenSize(window.innerWidth);
   }, []);
 
+  useEffect(() => {
+    const storedQty = localStorage.getItem("itemQty");
+    if (storedQty) {
+      setQty(JSON.parse(storedQty));
+    }
+    console.log(storedQty);
+  }, [setQty]);
+
   const handleMinus = () => {
     if (itemNumber === 0) return;
     setItemNumber((prev: number) => --prev);
@@ -63,7 +71,11 @@ const HeroSection = () => {
 
       <div className="flex flex-col lg:flex-row items-center sm:pt-10 sm:px-8 gap-10">
         <div className="flex flex-col items-center sm:items-start gap-6 flex-initial">
-          <div className="max-sm:relative flex items-center">
+          <div
+            className={`max-sm:relative flex items-center ${
+              cartOpen && "-z-10"
+            }`}
+          >
             <button
               onClick={() => setIsOpen(true)}
               disabled={screenSize < 640 && disabled}
@@ -79,7 +91,7 @@ const HeroSection = () => {
             </button>
             <BiChevronRight
               size={40}
-              className="absolute fill-black hover:fill-[#FF7D1A] -right-0 max-sm:mr-4 sm:-right-5 bg-white rounded-full p-2 sm:w-12 sm:h-12 cursor-pointer transition select-none sm:hidden"
+              className={`absolute fill-black hover:fill-[#FF7D1A] -right-0 max-sm:mr-4 sm:-right-5 bg-white rounded-full p-2 sm:w-12 sm:h-12 cursor-pointer transition select-none sm:hidden`}
               onClick={() => {
                 if (selectedImg >= 4) {
                   setSelectedImg(0);
@@ -90,7 +102,7 @@ const HeroSection = () => {
 
             <BiChevronLeft
               size={40}
-              className="absolute fill-black hover:fill-[#FF7D1A] -left-0 max-sm:ml-4 sm:-left-5 bg-white rounded-full p-2 sm:w-12 sm:h-12 cursor-pointer transition select-none sm:hidden"
+              className={`absolute fill-black hover:fill-[#FF7D1A] -left-0 max-sm:ml-4 sm:-left-5 bg-white rounded-full p-2 sm:w-12 sm:h-12 cursor-pointer transition select-none sm:hidden`}
               onClick={() => {
                 if (selectedImg <= 1) {
                   setSelectedImg(5);
@@ -134,8 +146,8 @@ const HeroSection = () => {
           </h1>
           <p className="text-gray-500/80 pb-6">
             These low-profile sneakers are your perfect casual wear companion.
-            Featuring a durable rubber outer sole, they&apos;ll withstand everything
-            the weather can offer.
+            Featuring a durable rubber outer sole, they&apos;ll withstand
+            everything the weather can offer.
           </p>
           <div className="flex flex-row lg:flex-col justify-between">
             <div className="flex gap-2 items-center pb-2">
@@ -181,7 +193,10 @@ const HeroSection = () => {
             </div>
             <button
               className="flex flex-1 items-center py-3 px-8 bg-[#FF7D1A] rounded-lg text-white justify-center gap-2 shadow-xl shadow-[#FF7D1A]/30 active:bg-[#FF7D1A]/80 transition"
-              onClick={() => setQty(itemNumber)}
+              onClick={() => {
+                setQty(itemNumber);
+                localStorage.setItem("itemQty", JSON.stringify(itemNumber));
+              }}
             >
               <AiOutlineShoppingCart />
               <span className="font-bold">&nbsp;Add to cart</span>

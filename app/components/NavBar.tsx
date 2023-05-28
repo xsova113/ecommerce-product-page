@@ -9,8 +9,8 @@ import { useStateContext } from "../context/StateContext";
 const NavBar = () => {
   const navItems = ["Collections", "Men", "Women", "About", "Contact"];
   const [open, setOpen] = useState(false);
-  const [cartOpen, setCartOpen] = useState(false);
-  const { qty } = useStateContext();
+  // const [cartOpen, setCartOpen] = useState(false);
+  const { qty, cartOpen, setCartOpen } = useStateContext();
 
   return (
     <>
@@ -85,7 +85,7 @@ const NavBar = () => {
           <div className="flex w-full sm:gap-10 gap-6 justify-end items-center">
             <div className="relative">
               <div
-                onClick={() => setCartOpen((preValue) => !preValue)}
+                onClick={() => setCartOpen((preValue: number) => !preValue)}
                 className="cursor-pointer"
               >
                 <AiOutlineShoppingCart

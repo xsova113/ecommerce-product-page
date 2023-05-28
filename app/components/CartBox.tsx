@@ -64,7 +64,10 @@ const CartBox = () => {
             <button>
               <FaTrashAlt
                 className="fill-black/50 hover:fill-black cursor-pointer"
-                onClick={() => setQty(0)}
+                onClick={() => {
+                  setQty(0);
+                  localStorage.setItem("itemQty", JSON.stringify(0));
+                }}
               />
             </button>
           </div>
