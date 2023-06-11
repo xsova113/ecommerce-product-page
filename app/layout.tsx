@@ -18,7 +18,7 @@ export default function RootLayout({
       <link rel="icon" href="./images/favicon-32x32.png" />
 
       <body
-        className={`${kumbh.className} text-[16px] py-8 px-8 sm:py-10 sm:px-28`}
+        className={`${kumbh.className} text-[16px] my-8 px-8 sm:px-28`}
       >
         {children}
       </body>

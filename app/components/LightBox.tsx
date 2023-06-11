@@ -1,13 +1,15 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import { Transition } from "@headlessui/react";
 
 interface LightBoxProps {
+  isOpen: boolean;
   setIsOpen: (value: boolean) => void;
 }
 
-const LightBox: React.FC<LightBoxProps> = ({ setIsOpen }) => {
+const LightBox: React.FC<LightBoxProps> = ({ isOpen, setIsOpen }) => {
   const images = [
     "/images/image-product-1-thumbnail.jpg",
     "/images/image-product-2-thumbnail.jpg",
@@ -15,17 +17,26 @@ const LightBox: React.FC<LightBoxProps> = ({ setIsOpen }) => {
     "/images/image-product-4-thumbnail.jpg",
   ];
 
-  const [selectedImg, setSelectedImg] = useState(1);
   const [isSelected, setIsSelected] = useState(0);
 
   return (
-    <>
+    <Transition
+      appear
+      show={isOpen}
+      enter="ease-out duration-300"
+      enterFrom="opacity-0"
+      enterTo="opacity-100"
+      leave="ease-in duration-200"
+      leaveFrom="opacity-100"
+      leaveTo="opacity-0"
+    >
       <div
-        className="absolute inset-0 bg-gray-950/60"
+        className={`absolute h-[110%] inset-0 bg-gray-950/60`}
         onClick={() => setIsOpen(false)}
       />
+
       <div className={`flex justify-center`}>
-        <div className={`absolute bottom-12`}>
+        <div className={`absolute bottom-12 `}>
           <div className="flex justify-end">
             <IoClose
               size={30}
@@ -49,7 +60,6 @@ const LightBox: React.FC<LightBoxProps> = ({ setIsOpen }) => {
                 if (isSelected >= 3) {
                   setIsSelected(-1);
                 }
-                // setSelectedImg((prev) => prev + 1);
                 setIsSelected((prev) => ++prev);
               }}
             />
@@ -61,7 +71,7 @@ const LightBox: React.FC<LightBoxProps> = ({ setIsOpen }) => {
                 if (isSelected < 1) {
                   setIsSelected(4);
                 }
-                setIsSelected(prev => --prev );
+                setIsSelected((prev) => --prev);
               }}
             />
           </div>
@@ -93,7 +103,7 @@ const LightBox: React.FC<LightBoxProps> = ({ setIsOpen }) => {
           </div>
         </div>
       </div>
-    </>
+    </Transition>
   );
 };
 

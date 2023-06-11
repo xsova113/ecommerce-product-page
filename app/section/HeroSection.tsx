@@ -57,7 +57,6 @@ const HeroSection = () => {
     if (storedQty) {
       setQty(JSON.parse(storedQty));
     }
-    console.log(storedQty);
   }, [setQty]);
 
   const handleMinus = () => {
@@ -67,7 +66,7 @@ const HeroSection = () => {
 
   return (
     <>
-      {isOpen && <LightBox setIsOpen={setIsOpen} />}
+      <LightBox isOpen={isOpen} setIsOpen={setIsOpen} />
 
       <div className="flex flex-col lg:flex-row items-center sm:pt-10 sm:px-8 gap-20 pb-14">
         <div className="flex flex-col items-center sm:items-start gap-6 flex-initial">
