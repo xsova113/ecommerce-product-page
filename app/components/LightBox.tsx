@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { Transition } from "@headlessui/react";
@@ -84,14 +84,14 @@ const LightBox: React.FC<LightBoxProps> = ({ isOpen, setIsOpen }) => {
                   isSelected === index && "sm:ring-[#FF7D1A]"
                 } rounded-lg transition`}
               >
-                <div className=" bg-white rounded-lg">
+                <div className="bg-white rounded-lg">
                   <Image
                     src={image}
                     alt="image-thumbnail"
                     width={80}
                     height={80}
-                    className={`rounded-lg hidden sm:flex filter ${
-                      isSelected === index && "opacity-40"
+                    className={`rounded-lg hidden sm:flex ${
+                      isSelected === index && "opacity-100"
                     } transition cursor-pointer hover:opacity-60`}
                     onClick={() => {
                       setIsSelected(index);

@@ -1,16 +1,11 @@
 import React from "react";
-import NavBar from "./components/NavBar";
-import HeroSection from "./section/HeroSection";
-import { StateContext } from "./context/StateContext";
+import HeroSection from "./components/section/HeroSection";
 
 const Home = () => {
   return (
-    <StateContext>
-      <div>
-        <NavBar />
-        <HeroSection />
-      </div>
-    </StateContext>
+    <main>
+      <HeroSection />
+    </main>
   );
 };
 

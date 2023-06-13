@@ -39,7 +39,6 @@ const CartBox = () => {
       </div>
       <hr className="w-full" />
 
-      {/* Empty cart message */}
       {qty >= 1 ? (
         <div className="flex flex-col">
           <div className="flex py-4 px-4 mt-2 items-center justify-between">
@@ -82,6 +81,7 @@ const CartBox = () => {
           </h1>
         </div>
       )}
+      <div />
     </>
   );
 };
