@@ -1,7 +1,6 @@
 "use client";
 
-import { SignIn, SignedIn, SignedOut } from "@clerk/nextjs";
-import { Registration, SocialButtons } from "./components";
+import { SignUp } from "@clerk/nextjs";
 import { useStateContext } from "@/app/context/StateContext";
 
 const Register = () => {
@@ -25,7 +24,7 @@ const Register = () => {
 
         <SocialButtons />
       </div> */}
-       <SignIn />
+       <SignUp />
     </div>
    
   );
