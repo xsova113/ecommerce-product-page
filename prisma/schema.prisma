@@ -38,7 +38,7 @@ model Session {
 }
 
 model User {
-  id             String    @id @default(cuid())
+  id             String    @id
   name           String?
   email          String?   @unique
   emailVerified  DateTime?
@@ -46,6 +46,8 @@ model User {
   hashedPassword String?
   accounts       Account[]
   sessions       Session[]
+
+  // item Item[]
 }
 
 model VerificationToken {
@@ -54,4 +56,15 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Item {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String
+  description String
+  price       Float
+  userId      String
+  // user        User     @relation(fields: [userId], references: [id])
 }

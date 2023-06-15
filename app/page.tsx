@@ -1,4 +1,3 @@
-import React from "react";
 import HeroSection from "./components/section/HeroSection";
 
 const Home = () => {
