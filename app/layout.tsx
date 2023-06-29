@@ -4,6 +4,7 @@ import "./globals.css";
 import { Kumbh_Sans } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { StateContext } from "./context/StateContext";
+import Footer from "./components/Footer";
 
 const kumbh = Kumbh_Sans({ subsets: ["latin"] });
 
@@ -19,10 +20,11 @@ export default function RootLayout({
       <meta name="description" content="Created by George Chang" />
       <link rel="icon" href="./images/favicon-32x32.png" />
       <ClerkProvider>
-        <body className={`${kumbh.className} text-[16px] my-8 px-8 sm:px-28`}>
+        <body className={`${kumbh.className} text-[16px] my-8 px-8 sm:px-28 overflow-x-hidden`}>
           <StateContext>
             <NavBar />
             {children}
+            <Footer />
           </StateContext>
         </body>
       </ClerkProvider>

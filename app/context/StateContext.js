@@ -8,10 +8,11 @@ export const StateContext = ({ children }) => {
   const [qty, setQty] = useState(0);
   const [cartOpen, setCartOpen] = useState(false);
   const [open, setOpen] = useState(false);
+  const [cartItem, setCartItem] = useState([]);
 
   return (
     <Context.Provider
-      value={{ qty, setQty, cartOpen, setCartOpen, open, setOpen }}
+      value={{ qty, setQty, cartOpen, setCartOpen, open, setOpen, cartItem, setCartItem }}
     >
       {children}
     </Context.Provider>

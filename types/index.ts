@@ -6,3 +6,56 @@ export interface DataType {
     }
   ];
 }
+
+////////////////////////// Banner type ///////////////////////////
+export interface BannerType {
+  _updatedAt: string;
+  desc: string;
+  buttonText: string;
+  image: Image;
+  _createdAt: string;
+  _rev: string;
+  _type: string;
+  _id: string;
+}
+
+interface Image {
+  _type: string;
+  asset: Asset;
+}
+
+interface Asset {
+  _ref: string;
+  _type: string;
+}
+
+////////////////////////////// Product type //////////////////////////////////
+
+export interface ProductType {
+  _rev: string;
+  details?: string;
+  _createdAt: string;
+  price?: number;
+  _type: string;
+  name: string;
+  _id: string;
+  _updatedAt: string;
+  slug?: Slug;
+  image?: Image[];
+}
+
+interface Image {
+  _type: string;
+  _key: string;
+  asset: Asset;
+}
+
+interface Asset {
+  _ref: string;
+  _type: string;
+}
+
+interface Slug {
+  current: string;
+  _type: string;
+}
