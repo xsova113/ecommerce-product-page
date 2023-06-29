@@ -26,33 +26,35 @@ const Subscribe = () => {
   return (
     <div className="flex flex-col items-center gap-20 bg-orange-500 mt-40 rounded-3xl shadow-2xl pb-24 pt-32">
       <Toaster />
-      <h1 className="text-white text-6xl max-md:text-3xl font-semibold max-md:self-center">
+      <h1 className="text-white text-6xl max-md:text-3xl text-center font-semibold max-md:self-center">
         Subscribe to Our Newsletter
       </h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white flex w-1/2 justify-between items-center rounded-md"
+        className="flex flex-col w-full sm:flex-row sm:justify-between items-center rounded-md"
       >
-        <input
-          type="email"
-          {...register("email", {
-            pattern: {
-              value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-              message: "Please enter a valid email address",
-            },
-          })}
-          placeholder="Enter your email"
-          className="py-4 ml-4 w-full outline-none"
-          id="email"
-          onChange={(e) => setEmailInput(e.target.value)}
-        />
-        <button
-          type="submit"
-          className="bg-orange-500 text-white rounded-md hover:bg-orange-500/70 w-fit transition px-8 h-10 mr-2"
-          disabled={!emailInput && !!!errors.email?.message}
-        >
-          SUBSCRIBE
-        </button>
+        <div className="flex flex-col sm:flex-row mx-auto sm:w-1/2 items-center sm:bg-white bg-transparent rounded-lg">
+          <input
+            type="email"
+            {...register("email", {
+              pattern: {
+                value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                message: "Please enter a valid email address",
+              },
+            })}
+            placeholder="Enter your email"
+            className="py-4 w-full px-4 rounded-lg outline-none"
+            id="email"
+            onChange={(e) => setEmailInput(e.target.value)}
+          />
+          <button
+            type="submit"
+            className="text-white max-sm:mt-4 bg-black rounded-md hover:bg-black/70 w-fit transition px-8 h-10 mr-2 max-sm:mr-0"
+            disabled={!emailInput && !!!errors.email?.message}
+          >
+            SUBSCRIBE
+          </button>
+        </div>
       </form>
     </div>
   );

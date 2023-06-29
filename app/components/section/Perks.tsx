@@ -1,11 +1,10 @@
-import React from "react";
 import { SiAdguard } from "react-icons/si";
 import { Ri24HoursFill } from "react-icons/ri";
 import { FaShippingFast } from "react-icons/fa";
 
 const Perks = () => {
   return (
-    <div className="flex justify-between py-40">
+    <div className="flex flex-col sm:flex-row justify-between sm:py-40 py-28 max-sm:gap-16 items-center">
       <div className="flex items-center gap-3">
         <SiAdguard size={60} color="orange" />
         <div className="flex flex-col gap-3">

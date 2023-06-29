@@ -20,7 +20,7 @@ export default function RootLayout({
       <meta name="description" content="Created by George Chang" />
       <link rel="icon" href="./images/favicon-32x32.png" />
       <ClerkProvider>
-        <body className={`${kumbh.className} text-[16px] my-8 px-8 sm:px-28 overflow-x-hidden`}>
+        <body className={`${kumbh.className} text-[16px] my-8 px-8 mx-auto sm:px-28 overflow-x-hidden`}>
           <StateContext>
             <NavBar />
             {children}
