@@ -1,38 +1,97 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useParams } from "next/navigation";
-import axios from "axios";
 import { useAuth } from "@clerk/nextjs";
 import toast, { Toaster } from "react-hot-toast";
 import { useStateContext } from "@/app/context/StateContext";
+import updateCartitems from "@/app/server/updateCartItems";
+import additemsToCart from "@/app/server/addItemsToCart";
+import { GuestCartItemType } from "@/types";
 
 const ProductButtons = ({ price, image }: any) => {
-  const [itemNumber, setItemNumber] = useState(1);
-  const { setQty } = useStateContext();
+  const [itemQty, setItemQty] = useState(1);
+  const { setGuestCartItems, cartItems, fetchCartItem, guestCartItems } =
+    useStateContext();
   const params = useParams();
-  const { userId } = useAuth();
+  const user = useAuth();
 
   const handleMinus = () => {
-    if (itemNumber === 1) return;
-    setItemNumber((prev: number) => --prev);
+    if (itemQty === 1) return;
+    setItemQty((prev: number) => --prev);
   };
 
   const handlePlus = () => {
-    setItemNumber((prev: number) => ++prev);
+    setItemQty((prev: number) => ++prev);
   };
 
+  /////// add items to cart ///////
   const addToCart = () => {
-    axios
-      .post("/api/addToCart", { params, itemNumber, userId, price, image })
-      .then((res) => {
-        toast.success(res.data);
-        setQty((prev: number) => prev + itemNumber);
-      })
-      .catch((err) => toast.error(err));
+    //////// add guest or none-user items to cart //////////
+    if (!user.userId || !user.isSignedIn) {
+      localStorage.setItem("itemName", JSON.stringify(params?.slug));
+      localStorage.setItem("itemQty", JSON.stringify(itemQty));
+      localStorage.setItem("itemPrice", JSON.stringify(price));
+      localStorage.setItem("itemImage", image);
+
+      const name = JSON.parse(localStorage.getItem("itemName") || "");
+      const qty = JSON.parse(localStorage.getItem("itemQty") || "");
+      const itemImage = localStorage.getItem("itemImage");
+      const itemPrice = JSON.parse(localStorage.getItem("itemPrice") || "");
+
+      /////// find already existed item and update quantity //////
+      if (
+        guestCartItems.find(
+          (item: GuestCartItemType) => item.name === params?.slug
+        )
+      ) {
+        const newGuestItems = guestCartItems.map((item: GuestCartItemType) => {
+          if (item.name === params?.slug) {
+            return { ...item, qty };
+          }
+          return item;
+        });
+        setGuestCartItems(newGuestItems);
+        localStorage.setItem("guestCartItems", JSON.stringify(newGuestItems));
+        toast.success("item updated successfully");
+      } else {
+        ///////// Add new item to guestCart //////////
+        setGuestCartItems((prev: GuestCartItemType[]) => [
+          ...prev,
+          { name, qty, image: itemImage, price: itemPrice },
+        ]);
+        localStorage.setItem("guestCartItems", JSON.stringify(guestCartItems));
+        toast.success("Item added successfully");
+      }
+    } else {
+      //////// add signed-in user items to cart ////////
+      const existedCartItem = cartItems.find(
+        (item: any) => item.name === params?.slug
+      );
+
+      if (existedCartItem) {
+        updateCartitems(existedCartItem.id, itemQty)
+          .then((data) => {
+            toast.success(data);
+            fetchCartItem();
+          })
+          .catch((err) => toast.error(err));
+      } else {
+        additemsToCart({ params, itemQty, userId: user.userId, price, image })
+          .then((data) => {
+            toast.success(data);
+            fetchCartItem();
+          })
+          .catch((err) => toast.error(err));
+      }
+    }
   };
+
+  useEffect(() => {
+    fetchCartItem();
+  }, [user.userId, fetchCartItem]);
 
   return (
     <div className="flex flex-col sm:flex-row pt-5 gap-3">
@@ -46,7 +105,7 @@ const ProductButtons = ({ price, image }: any) => {
             height={10}
           />
         </button>
-        <span className="font-bold">{itemNumber}</span>
+        <span className="font-bold">{itemQty}</span>
         <button className="p-2" onClick={handlePlus}>
           <Image
             src={"/images/icon-plus.svg"}

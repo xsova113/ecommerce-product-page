@@ -13,8 +13,12 @@ const Collections = async () => {
       <h1 className="text-5xl font-semibold mb-20">Expore All Sneakers</h1>
       <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:gap-20 md:gap-10 gap-6">
         {sneakers.map((sneaker: ProductType | any) => (
-          <Link href={`/collections/${sneaker.slug?.current}`} key={sneaker._id} className="flex flex-col items-center gap-3">
-            <div className="relative lg:w-64 lg:h-64 w-52 h-52">
+          <Link
+            href={`/collections/${sneaker.slug?.current}`}
+            key={sneaker._id}
+            className="flex flex-col items-center gap-3"
+          >
+            <div className="relative rounded-2xl lg:w-64 lg:h-64 w-52 h-52 overflow-hidden">
               <Image
                 src={
                   sneaker.image
@@ -24,7 +28,7 @@ const Collections = async () => {
                 alt="sneaker image"
                 loading="lazy"
                 fill
-                className="object-cover rounded-2xl bg-orange-200 shadow-lg"
+                className="object-cover bg-orange-200 shadow-lg hover:scale-125 transition"
               />
             </div>
             <h1 className="font-bold text-lg">{sneaker.name}</h1>

@@ -59,3 +59,11 @@ interface Slug {
   current: string;
   _type: string;
 }
+
+///// guest cart item type //////
+export interface GuestCartItemType {
+  name: string;
+  qty: number;
+  image: string;
+  price: number;
+}

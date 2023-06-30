@@ -6,16 +6,20 @@ import { BsBagCheckFill } from "react-icons/bs";
 import { runConfetti } from "@/libs/confetti";
 import { useAuth } from "@clerk/nextjs";
 import removeAllItems from "../server/removeAllItems";
+import { useStateContext } from "../context/StateContext";
 
 const Success = () => {
   const { userId } = useAuth();
+  const { setQty } = useStateContext();
 
   useEffect(() => {
     runConfetti();
     if (userId) {
       removeAllItems(userId);
-    } 
-  }, [userId]);
+    } else {
+      setQty(0);
+    }
+  }, [userId, setQty]);
 
   return (
     <div className="success-wrapper -mt-12">
