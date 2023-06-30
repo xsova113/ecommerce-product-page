@@ -36,7 +36,7 @@ const Product = () => {
         { params }
       )
       .then((data) => setProduct(data));
-  }, [params]);
+  }, []);
 
   return (
     <>

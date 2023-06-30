@@ -48,8 +48,9 @@ const CartBox = () => {
     } else {
       toast.error("Removing item failed");
     }
-    setGuestCartItems(newGuestItems);
+
     localStorage.setItem("guestCartItems", JSON.stringify(newGuestItems));
+    setGuestCartItems(newGuestItems);
   };
 
   const handleCheckout = async () => {
@@ -63,7 +64,7 @@ const CartBox = () => {
   };
 
   return (
-    <div className="bg-white rounded-xl md:w-[400px] w-[300px]">
+    <div className="bg-white rounded-xl sm:w-[400px]">
       <div className="flex flex-col py-4 px-5">
         <h1 className="font-bold">Cart</h1>
       </div>
@@ -124,7 +125,10 @@ const CartBox = () => {
           <div className="flex justify-center gap-2">
             <h1 className="text-sm font-bold">Total Price:</h1>
             <span className="text-sm text-gray-700">
-              ${userId ? totalPrice.toFixed(2) : totalGuestPrice.toFixed(2)}
+              $
+              {userId
+                ? totalPrice.toFixed(2)
+                : Number(totalGuestPrice).toFixed(2)}
             </span>
           </div>
           <div className="w-full flex pb-5 justify-center">

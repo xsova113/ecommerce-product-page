@@ -38,18 +38,19 @@ const ProductImages = ({
           disabled={screenSize < 640 && disabled}
           className="sm:w-auto sm:h-auto sm:block max-sm:w-screen max-sm:-z-10"
         >
-          <Image
-            priority
-            src={
-              product?.image
-                ? urlFor(product.image[selectedImg]).url()
-                : "/images/blur-img.png"
-            }
-            alt="product-image"
-            height={700}
-            width={400}
-            className="sm:rounded-xl sm:w-[450px] w-[700px]"
-          />
+          <div className={`relative h-[500px] w-[450px] ${isOpen && "-z-10"}`}>
+            <Image
+              priority
+              src={
+                product?.image
+                  ? urlFor(product.image[selectedImg]).url()
+                  : "/images/blur-img.png"
+              }
+              alt="product-image"
+              fill
+              className="rounded-lg object-cover"
+            />
+          </div>
         </button>
 
         {/* left / right buttons for mobile view  */}
@@ -84,16 +85,15 @@ const ProductImages = ({
             key={index}
             className={`ring-transparent ring-2 ${
               selectedImg === index && "sm:ring-[#FF7D1A]"
-            } rounded-lg transition cursor-pointer`}
+            } rounded-lg transition cursor-pointer relative w-[80px] h-[80px]`}
           >
             <Image
               src={urlFor(image).url()}
               alt="image-thumbnail"
-              width={90}
-              height={80}
+              fill
               className={`rounded-lg hidden sm:flex filte ${
                 index === selectedImg && "opacity-30"
-              } transition`}
+              } transition object-cover`}
               onClick={() => {
                 setSelectedImg(index);
               }}

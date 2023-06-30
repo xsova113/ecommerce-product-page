@@ -27,12 +27,12 @@ const LightBox: React.FC<LightBoxProps> = ({ isOpen, setIsOpen, product }) => {
       leaveTo="opacity-0"
     >
       <div
-        className={`absolute h-[140%] inset-0 bg-gray-950/60`}
+        className={`absolute h-[120%] inset-0 bg-gray-950/60`}
         onClick={() => setIsOpen(false)}
       />
 
       <div className={`flex justify-center`}>
-        <div className={`z-50 absolute bottom-14`}>
+        <div className={`z-50 absolute bottom-6`}>
           <div className="flex justify-end">
             <IoClose
               size={30}
@@ -41,17 +41,18 @@ const LightBox: React.FC<LightBoxProps> = ({ isOpen, setIsOpen, product }) => {
             />
           </div>
           <div className="flex items-center">
-            <Image
-              src={
-                product?.image
-                  ? urlFor(product.image[isSelected]).url()
-                  : "/images/blur-img.png"
-              }
-              alt="product-image"
-              height={700}
-              width={400}
-              className="sm:rounded-xl sm:w-[500px] w-[700px]"
-            />
+            <div className="relative w-[500px] h-[500px] sm:rounded-lg"> 
+              <Image
+                src={
+                  product?.image
+                    ? urlFor(product.image[isSelected]).url()
+                    : "/images/blur-img.png"
+                }
+                alt="product-image"
+                fill
+                className="sm:rounded-xl object-cover"
+              />
+            </div>
 
             <BiChevronRight
               size={40}
@@ -85,12 +86,12 @@ const LightBox: React.FC<LightBoxProps> = ({ isOpen, setIsOpen, product }) => {
                   isSelected === index && "sm:ring-[#FF7D1A]"
                 } rounded-lg transition`}
               >
-                <div className="bg-white rounded-lg">
+                <div className="relative bg-white rounded-lg w-[80px] h-[80px]">
                   <Image
                     src={image ? urlFor(image).url() : "/images/blur-img.png"}
                     alt="image-thumbnail"
-                    width={80}
-                    height={80}
+                    fill
+                    loading="lazy"
                     className={`rounded-lg hidden sm:flex ${
                       isSelected === index && "opacity-60"
                     } transition cursor-pointer hover:opacity-60`}

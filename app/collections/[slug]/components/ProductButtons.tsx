@@ -31,17 +31,10 @@ const ProductButtons = ({ price, image }: any) => {
   const addToCart = () => {
     //////// add guest or none-user items to cart //////////
     if (!user.userId || !user.isSignedIn) {
-      localStorage.setItem("itemName", JSON.stringify(params?.slug));
-      localStorage.setItem("itemQty", JSON.stringify(itemQty));
-      localStorage.setItem("itemPrice", JSON.stringify(price));
-      localStorage.setItem("itemImage", image);
-
-      const name = JSON.parse(localStorage.getItem("itemName") || "");
-      const qty = JSON.parse(localStorage.getItem("itemQty") || "");
-      const itemImage = localStorage.getItem("itemImage");
-      const itemPrice = JSON.parse(localStorage.getItem("itemPrice") || "");
-
       /////// find already existed item and update quantity //////
+      localStorage.setItem("qty", JSON.stringify(itemQty));
+      const qty = JSON.parse(localStorage.getItem("qty") || "");
+
       if (
         guestCartItems.find(
           (item: GuestCartItemType) => item.name === params?.slug
@@ -53,16 +46,21 @@ const ProductButtons = ({ price, image }: any) => {
           }
           return item;
         });
-        setGuestCartItems(newGuestItems);
         localStorage.setItem("guestCartItems", JSON.stringify(newGuestItems));
+        setGuestCartItems(newGuestItems);
         toast.success("item updated successfully");
       } else {
-        ///////// Add new item to guestCart //////////
+        /////// Add new item to guest Cart //////////
+        localStorage.setItem(
+          "guestCartItems",
+          JSON.stringify([...guestCartItems, { name: params?.slug, qty, image, price }])
+        );
+
         setGuestCartItems((prev: GuestCartItemType[]) => [
           ...prev,
-          { name, qty, image: itemImage, price: itemPrice },
+          { name: params?.slug, qty, image, price },
         ]);
-        localStorage.setItem("guestCartItems", JSON.stringify(guestCartItems));
+
         toast.success("Item added successfully");
       }
     } else {
