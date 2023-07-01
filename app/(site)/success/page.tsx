@@ -10,7 +10,7 @@ import { useStateContext } from "../../context/StateContext";
 
 const Success = () => {
   const { userId } = useAuth();
-  const { setQty } = useStateContext();
+  const { setQty, setGuestCartItems } = useStateContext();
 
   useEffect(() => {
     runConfetti();
@@ -19,6 +19,9 @@ const Success = () => {
     } else {
       setQty(0);
     }
+
+    localStorage.clear();
+    setGuestCartItems([]);
   }, [userId, setQty]);
 
   return (
