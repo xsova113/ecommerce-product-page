@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="footer max-md:gap-8 max-md:text-center max-md:items-center flex flex-col md:flex-row mt-32 justify-between">
         <div className="relative w-2/4 sm:w-1/4 h-[100px]">
           <Image
-            src={"/images/logo.svg"}
+            src={"/images/logo2.svg"}
             alt="logo"
             fill
             className="object-contain"
@@ -32,7 +32,7 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col gap-2">
-          <h1 className="text-base font-semibold"> Support</h1>
+          <h1 className="text-base font-semibold">Support</h1>
           <Link href={"#"}>FAQs</Link>
           <Link href={"#"}>Support Center</Link>
           <Link href={"/contact"}>Contact US</Link>

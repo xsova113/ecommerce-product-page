@@ -55,13 +55,15 @@ const NavBar = () => {
   }, [user, cartItems, guestCartItems, setQty]);
 
   useEffect(() => {
-    setGuestCartItems(JSON.parse(localStorage.getItem("guestCartItems") || "[]"));
+    setGuestCartItems(
+      JSON.parse(localStorage.getItem("guestCartItems") || "[]")
+    );
   }, [user.userId, getCartitem]);
 
   return (
     <header>
       <Toaster />
-      <nav>
+      <nav className="fixed inset-0 pt-6 mx-16 px-10 h-20 backdrop-blur border border-white shadow-xl rounded-b-3xl bg-black/30 z-50">
         <div
           className={`absolute inset-0 ${cartOpen ? "block" : "hidden"}`}
           onClick={() => setCartOpen(false)}
@@ -72,8 +74,8 @@ const NavBar = () => {
             <Image
               src={"/images/icon-menu.svg"}
               alt="menu"
-              width={20}
-              height={20}
+              width={55}
+              height={55}
               className="lg:hidden sm:w-[30px] sm:h-[25px] block mr-4 sm:mr-6 w-auto h-auto cursor-pointer"
               onClick={() => setOpen(true)}
             />
@@ -86,7 +88,7 @@ const NavBar = () => {
 
             <LgScreenNavItems navItems={navItems} />
 
-            <div className="flex w-full sm:gap-10 gap-6 justify-end items-center">
+            <div className="flex w-full sm:gap-10 gap-6 justify-end items-baseline">
               <div className="relative">
                 <button
                   onClick={() => {
@@ -153,7 +155,6 @@ const NavBar = () => {
             </div>
           </div>
         </div>
-        <hr className="hidden sm:block" />
       </nav>
     </header>
   );

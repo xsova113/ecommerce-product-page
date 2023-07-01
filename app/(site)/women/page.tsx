@@ -12,7 +12,7 @@ const Women = async () => {
 }[0]`);
 
   return (
-    <section className="mt-20 flex flex-col items-center">
+    <section className="pt-32 flex flex-col items-center">
       <BannerModal banner={banner} />
       <CollectionModal title={"Sneakers for Women"} category={products} />
     </section>

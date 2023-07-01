@@ -7,7 +7,7 @@ const LgScreenNavItems = ({ navItems }: { navItems: string[] }) => {
         <div key={index}>
           <Link
             href={`/${item.toLowerCase()}`}
-            className="text-black/60 hover:text-black cursor-pointer border-b-4 border-transparent hover:border-red-500 pb-8 transition"
+            className="text-white hover:text-black cursor-pointer border-b-4 border-transparent hover:border-red-500 pb-6 transition"
           >
             {item}
           </Link>

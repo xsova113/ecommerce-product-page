@@ -9,7 +9,7 @@ const Collections = async () => {
     `*[_type == "banner" && name == "collection banner"][0]`
   );
   return (
-    <section className="mt-20 flex flex-col items-center">
+    <section className="pt-32 flex flex-col items-center">
       <Banner banner={banner} />
       <CollectionModal title={"Our Collections"} category={sneakers} />
     </section>

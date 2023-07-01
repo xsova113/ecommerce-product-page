@@ -22,7 +22,7 @@ const Home = async () => {
 }[0]`);
 
   return (
-    <main>
+    <main className="pt-12">
       <Banner bannerData={bannerData} />
       <Perks />
       <Collection products={products} />
