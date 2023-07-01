@@ -21,7 +21,7 @@ const CollectionModal = ({ title, category }: CollectionModalProps) => {
             key={product._id}
             className="text-center space-y-5 max-md:mb-6"
           >
-            <div className="relative max-md:w-72 max-md:h-72 w-64 h-64 bg-orange-300/50 rounded-2xl shadow-lg overflow-hidden">
+            <div className="relative max-md:w-72 max-md:h-72 w-64 h-64 bg-white/30 rounded-2xl shadow-lg overflow-hidden">
               <Image
                 loading="lazy"
                 src={
@@ -31,7 +31,7 @@ const CollectionModal = ({ title, category }: CollectionModalProps) => {
                 }
                 fill
                 alt="product image"
-                className="object-cover hover:scale-125 transition"
+                className="object-contain hover:scale-125 transition"
               />
             </div>
             <div className="flex flex-col">

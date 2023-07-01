@@ -12,7 +12,7 @@ const Collection = ({
   products: typeof product.fields | any;
 }) => {
   return (
-    <section className="flex flex-col mt-14 bg-gradient-to-tr from-purple-400 via-blue-300 to-fuchsia-300 md:p-10 px-8 py-8 rounded-2xl shadow-lg text-gray-700">
+    <section className="flex flex-col mt-14 overflow-hidden bg-gradient-to-tr from-purple-400 via-blue-300 to-fuchsia-300 md:p-10 px-8 py-8 rounded-2xl shadow-lg text-gray-700">
       <h1 className="text-5xl font-semibold mx-auto pb-20 tracking-wider max-md:text-center">
         Our Collection
       </h1>
@@ -23,7 +23,7 @@ const Collection = ({
             key={product._id}
             className="text-center space-y-5 max-md:mb-10"
           >
-            <div className="relative w-full h-64 bg-orange-300/50 rounded-2xl shadow-lg overflow-hidden">
+            <div className="relative w-full h-64 bg-white/30 rounded-2xl shadow-lg overflow-hidden">
               <Image
                 loading="lazy"
                 src={
@@ -33,7 +33,7 @@ const Collection = ({
                 }
                 fill
                 alt="product image"
-                className="object-cover hover:scale-125 transition"
+                className="object-contain hover:scale-125 transition"
               />
             </div>
             <div className="flex flex-col gap-2">

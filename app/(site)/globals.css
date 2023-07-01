@@ -53,7 +53,7 @@
 }
 
 .success, .cancel {
-    width: 1000px;
+    /* width: 1000px; */
     margin: auto;
     margin-top: 160px;
     background-color: #dcdcdc;
@@ -63,6 +63,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    @apply lg:w-[1000px] md:w-[800px] sm:w-[550px] w-[350px] text-center
 }
 
 .success .icon {

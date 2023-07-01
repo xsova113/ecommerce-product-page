@@ -22,7 +22,7 @@ const Success = () => {
 
     localStorage.clear();
     setGuestCartItems([]);
-  }, [userId, setQty]);
+  }, [userId, setQty, setGuestCartItems]);
 
   return (
     <div className="success-wrapper -mt-12">
