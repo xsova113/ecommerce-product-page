@@ -48,7 +48,7 @@ const ProductImages = ({
               }
               alt="product-image"
               fill
-              className="rounded-lg object-cover"
+              className="rounded-lg object-contain"
             />
           </div>
         </button>
