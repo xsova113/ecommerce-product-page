@@ -13,6 +13,9 @@ const Home = async () => {
   const bannerData = await client.fetch(
     `*[_type == "banner" && name == "home banner"][0]`
   );
+  const readMoreBanner = await client.fetch(
+    `*[_type == "banner" && name == "read more"][0]`
+  );
   const { products: newRelease } =
     await client.fetch(`*[_type == "category" && name == "New Release"] {
     products[] -> {...}
@@ -23,7 +26,7 @@ const Home = async () => {
       <Banner bannerData={bannerData} />
       <Perks />
       <Collection products={products} />
-      <ReadMore />
+      <ReadMore banner={readMoreBanner} />
       <NewRelease newRelease={newRelease} />
       <Subscribe />
     </main>

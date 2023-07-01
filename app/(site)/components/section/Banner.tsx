@@ -27,7 +27,7 @@ const Banner = ({ bannerData }: BannerProps) => {
         <div className="relative w-[300px] h-[300px] self-center md:flex-1">
           <Image
             // @ts-ignore
-            src={urlFor(bannerData.image).url()}
+            src={urlFor(bannerData.image[0]).url()}
             alt="banner image"
             priority
             fill

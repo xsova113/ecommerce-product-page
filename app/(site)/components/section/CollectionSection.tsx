@@ -51,7 +51,7 @@ const Collection = ({
           className="flex items-center justify-center font-semibold gap-2 "
         >
           <span className="text-white text-lg font-bold">SEE ALL</span>
-          <FaArrowRight className="animate-bounce" color="white" size={20} />
+          <FaArrowRight className="animate-bouncex" color="white" size={20} />
         </Link>
       </div>
     </section>

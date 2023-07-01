@@ -13,7 +13,7 @@ export interface BannerType {
   largeText1: string;
   desc: string;
   buttonText: string;
-  image: Image;
+  image: [Image];
   _createdAt: string;
   _rev: string;
   _type: string;
@@ -76,7 +76,7 @@ export interface CollectionBanner {
   _rev: string;
   name: string;
   _updatedAt: string;
-  image: Image;
+  image: [Image];
   _createdAt: string;
   _type: string;
   discount: string;

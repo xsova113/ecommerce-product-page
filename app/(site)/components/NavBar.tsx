@@ -55,7 +55,7 @@ const NavBar = () => {
   }, [user, cartItems, guestCartItems, setQty]);
 
   useEffect(() => {
-    setGuestCartItems(JSON.parse(localStorage.getItem("guestCartItems") || ""));
+    setGuestCartItems(JSON.parse(localStorage.getItem("guestCartItems") || "[]"));
   }, [user.userId, getCartitem]);
 
   return (
