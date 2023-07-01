@@ -5,7 +5,7 @@ import Image from "next/image";
 const BannerModal = ({ banner }: { banner: CollectionBanner }) => {
   return (
     <section className="md:p-10 px-4 py-8 bg-gradient-to-br from-violet-200 via-purple-200 to-blue-200 rounded-2xl w-full shadow-lg text-gray-700">
-      <div className="flex flex-col md:flex-row gap-8 md:gap-20 justify-center">
+      <div className="flex flex-col md:flex-row md:gap-20 justify-center items-center">
         <div className="md:snap-y snap-x snap-mandatory gap-32 md:py-12 overflow-y-scroll flex flex-col h-[400px] md:flex-1">
           {banner.image.map((image, index) => (
             <div

@@ -11,7 +11,7 @@ interface CollectionModalProps {
 const CollectionModal = ({ title, category }: CollectionModalProps) => {
   return (
     <section className="flex flex-col mt-14 max-md:items-center bg-gradient-to-tr from-purple-400 via-blue-300 to-fuchsia-300 md:p-12 w-full px-8 py-8 rounded-2xl shadow-lg text-gray-700">
-      <h1 className="text-5xl font-semibold mx-auto pb-20 tracking-wider max-md:text-center">
+      <h1 className="text-5xl font-bold mx-auto pb-20 tracking-wider max-md:text-center">
         {title}
       </h1>
       <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 lg:gap-16 sm:gap-8">

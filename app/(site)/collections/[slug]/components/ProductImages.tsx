@@ -1,6 +1,5 @@
 "use client";
 
-import { images } from "@/libs/constants";
 import { useState } from "react";
 import Image from "next/image";
 import { useStateContext } from "@/app/context/StateContext";
