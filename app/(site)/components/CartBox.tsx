@@ -89,7 +89,7 @@ const CartBox = () => {
                       {item.name.replace("-", " ")}
                     </span>
                     <span className="text-sm text-gray-100">
-                      {item.price} x {item.qty}&nbsp;
+                      {item.price / 2} x {item.qty}&nbsp;
                       <span className="text-white font-bold">
                         ${((item.price / 2) * item.qty).toFixed(2) || 0}
                       </span>

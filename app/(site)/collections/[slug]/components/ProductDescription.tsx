@@ -3,7 +3,7 @@ import { ProductType } from "@/types";
 const ProductDescriptions = ({ product }: { product?: ProductType }) => {
   return (
     <>
-      <span className="text-[#FF7D1A] font-bold text-xs pb-5">
+      <span className="text-red-500 font-bold text-xs pb-5">
         SNEAKER COMPANY
       </span>
       <h1 className="text-5xl font-bold pb-8">{product?.name}</h1>

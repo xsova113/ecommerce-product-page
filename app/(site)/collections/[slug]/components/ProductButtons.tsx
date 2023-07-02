@@ -114,7 +114,7 @@ const ProductButtons = ({ price, image }: any) => {
         </button>
       </div>
       <button
-        className="flex flex-1 items-center py-3 px-8 bg-[#FF7D1A] rounded-lg text-white justify-center gap-2 shadow-xl shadow-[#FF7D1A]/30 active:bg-[#FF7D1A]/80 transition"
+        className="flex flex-1 items-center py-3 px-8 bg-red-500 rounded-lg text-white justify-center gap-2 shadow-xl shadow-[#FF7D1A]/30 active:bg-red-500/80 transition"
         onClick={addToCart}
       >
         <AiOutlineShoppingCart />
