@@ -19,7 +19,7 @@ export default function RootLayout({
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta name="description" content="Created by George Chang" />
       <link rel="icon" href="./images/favicon-32x32.png" />
-      <ClerkProvider>
+      <ClerkProvider appearance={{variables:{colorPrimary: "black"}}}>
         <body className={`${kumbh.className} min-h-screen text-[16px] my-6 px-4 sm:px-12 lg:px-24 overflow-x-hidden`}>
           <StateContext>
             <NavBar />
