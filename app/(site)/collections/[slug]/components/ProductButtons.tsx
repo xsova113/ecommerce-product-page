@@ -7,8 +7,8 @@ import { useParams } from "next/navigation";
 import { useAuth } from "@clerk/nextjs";
 import toast, { Toaster } from "react-hot-toast";
 import { useStateContext } from "@/app/context/StateContext";
-import updateCartitems from "@/app/server/updateCartItems";
-import additemsToCart from "@/app/server/addItemsToCart";
+import updateCartitems from "@/app/action/updateCartItems";
+import additemsToCart from "@/app/action/addItemsToCart";
 import { GuestCartItemType } from "@/types";
 
 const ProductButtons = ({ price, image }: any) => {

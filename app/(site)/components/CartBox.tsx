@@ -1,16 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import removeItem from "../../server/removeItem";
+import removeItem from "../../action/removeItem";
 import { FaTrashAlt } from "react-icons/fa";
 import { urlFor } from "@/sanity/lib/image";
 import { CartItem } from "@prisma/client";
 import { useAuth } from "@clerk/nextjs";
 import { useStateContext } from "../../context/StateContext";
 import { toast } from "react-hot-toast";
-import getCartitem from "../../server/getCartItem";
+import getCartitem from "../../action/getCartItem";
 import getStripe from "@/libs/getStripe";
-import { checkout } from "../../server/checkout";
+import { checkout } from "../../action/checkout";
 import { GuestCartItemType } from "@/types";
 
 const CartBox = () => {
@@ -64,9 +64,9 @@ const CartBox = () => {
   };
 
   return (
-    <div className="bg-white rounded-xl sm:w-[400px]">
+    <div className="rounded-xl sm:w-[400px] text-white">
       <div className="flex flex-col py-4 px-5">
-        <h1 className="font-bold">Cart</h1>
+        <h1 className="font-bold text-white">Cart</h1>
       </div>
       <hr className="w-full" />
 
@@ -85,17 +85,19 @@ const CartBox = () => {
                     className="rounded-md"
                   />
                   <div className="flex flex-col">
-                    <span className="text-sm text-gray-500/90 capitalize">{item.name.replace("-", " ")}</span>
-                    <span className="text-sm text-gray-500/90">
+                    <span className="text-sm text-gray-100 font-semibold capitalize">
+                      {item.name.replace("-", " ")}
+                    </span>
+                    <span className="text-sm text-gray-100">
                       {item.price} x {item.qty}&nbsp;
-                      <span className="text-black font-bold">
+                      <span className="text-white font-bold">
                         ${((item.price / 2) * item.qty).toFixed(2) || 0}
                       </span>
                     </span>
                   </div>
                   <button>
                     <FaTrashAlt
-                      className="fill-black/50 hover:fill-black cursor-pointer"
+                      className="fill-white hover:fill-gray-200 transition cursor-pointer"
                       onClick={() => {
                         if (userId) {
                           handleRemove(item);
@@ -113,7 +115,7 @@ const CartBox = () => {
         )
       ) : (
         <div className="flex justify-center py-[70px]">
-          <h1 className="text-gray-500 font-bold text-lg">
+          <h1 className="text-gray-100 font-bold text-lg">
             Your cart is empty.
           </h1>
         </div>
@@ -124,7 +126,7 @@ const CartBox = () => {
         <div className="flex flex-col mt-4">
           <div className="flex justify-center gap-2">
             <h1 className="text-sm font-bold">Total Price:</h1>
-            <span className="text-sm text-gray-700">
+            <span className="text-sm text-gray-100">
               $
               {userId
                 ? totalPrice.toFixed(2)
@@ -133,7 +135,7 @@ const CartBox = () => {
           </div>
           <div className="w-full flex pb-5 justify-center">
             <button
-              className="py-3 px-14 mt-4 text-white rounded-lg font-semibold bg-[#FF7D1A] hover:scale-110 active:bg-[#FF7D1A]/80 transition"
+              className="py-3 px-14 mt-4 text-white rounded-lg font-semibold bg-red-500 hover:scale-110 active:bg-red-500/80 transition"
               onClick={handleCheckout}
             >
               Checkout

@@ -2,7 +2,7 @@
 
 import { useAuth } from "@clerk/nextjs";
 import { createContext, useCallback, useContext, useState } from "react";
-import getCartitem from "../server/getCartItem";
+import getCartitem from "../action/getCartItem";
 
 export const Context = createContext();
 

@@ -5,8 +5,9 @@ import {
   ProductButtons,
   ProductDescription,
   ProductImages,
+  YouMayAlsoLike,
 } from "./components";
-import LightBox from "./components/LightBox";
+import LightBox from "../../components/LightBox";
 import { useParams } from "next/navigation";
 import { client } from "@/sanity/lib/client";
 import { ProductType } from "@/types";
@@ -39,10 +40,10 @@ const Product = () => {
   }, []);
 
   return (
-    <div>
+    <section className="flex flex-col items-center">
       <LightBox product={product} isOpen={isOpen} setIsOpen={setIsOpen} />
 
-      <div className="flex flex-col lg:flex-row lg:justify-center items-center sm:pt-10 sm:px-8 gap-20 mt-12 pb-14">
+      <div className="flex flex-col lg:flex-row lg:justify-center items-center sm:pt-10 sm:px-8 gap-28 mt-32 pb-14">
         <ProductImages
           setIsOpen={setIsOpen}
           screenSize={screenSize}
@@ -63,7 +64,8 @@ const Product = () => {
           />
         </div>
       </div>
-    </div>
+      <YouMayAlsoLike />
+    </section>
   );
 };
 

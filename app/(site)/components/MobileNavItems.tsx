@@ -9,14 +9,14 @@ const NavItems = ({ navItems }: { navItems: string[] }) => {
   return (
     <>
       <div
-        className={`bg-[#000000]/75 absolute inset-0 -z-10 ${
-          open ? "opacity-100 z-10" : "opacity-0"
+        className={`bg-[#000000]/75 fixed inset-0 ${
+          open ? "opacity-100 z-10" : "opacity-0 -z-10"
         } ease-in-out duration-300`}
         onClick={() => setOpen(false)}
       />
       <div
-        className={`bg-white pt-10 pl-8 fixed space-y-4 left-0 top-0 h-screen w-[60%] ease-in-out duration-300 via-zinc-100 ${
-          open ? "translate-x-0 z-20" : "-translate-x-full"
+        className={`bg-white pt-10 pl-8 fixed space-y-4 -left-4 top-0 h-screen w-[60%] ease-in-out duration-300 via-zinc-100 ${
+          open ? "translate-x-0 z-20" : "-translate-x-[2000px]"
         }`}
       >
         <Image

@@ -10,7 +10,7 @@ const Signin = () => {
     <div
       className={`relative ${
         cartOpen && "-z-50"
-      } min-h-screen flex justify-center md:mt-10 w-full`}
+      } min-h-screen flex justify-center mt-28 md:mt-32 w-full`}
     >
       <SignIn />
     </div>

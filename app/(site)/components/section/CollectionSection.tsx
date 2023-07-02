@@ -50,8 +50,8 @@ const Collection = ({
           href={"/collections"}
           className="flex items-center justify-center font-semibold gap-2 "
         >
-          <span className="text-white text-lg font-bold">SEE ALL</span>
-          <FaArrowRight className="animate-bouncex" color="white" size={20} />
+          <span className="text-red-500 text-lg font-bold">SEE ALL</span>
+          <FaArrowRight className="animate-bouncex" color="red" size={20} />
         </Link>
       </div>
     </section>

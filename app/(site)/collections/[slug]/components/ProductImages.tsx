@@ -37,13 +37,13 @@ const ProductImages = ({
           disabled={screenSize < 640 && disabled}
           className="sm:w-auto sm:h-auto sm:block max-sm:w-screen max-sm:-z-10"
         >
-          <div className={`relative h-[400px] w-[400px] ${isOpen && "-z-10"}`}>
+          <div className={`relative h-[400px] w-[400px] ${isOpen && "-z-10"} bg-gray-100 rounded-2xl`}>
             <Image
               priority
               src={
                 product?.image
                   ? urlFor(product.image[selectedImg]).url()
-                  : "/images/blur-img.png"
+                  : "/images/placeholder.png"
               }
               alt="product-image"
               fill

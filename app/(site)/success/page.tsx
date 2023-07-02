@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 import { BsBagCheckFill } from "react-icons/bs";
 import { runConfetti } from "@/libs/confetti";
 import { useAuth } from "@clerk/nextjs";
-import removeAllItems from "../../server/removeAllItems";
+import removeAllItems from "../../action/removeAllItems";
 import { useStateContext } from "../../context/StateContext";
 
 const Success = () => {

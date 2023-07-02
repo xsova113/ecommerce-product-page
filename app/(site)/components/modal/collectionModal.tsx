@@ -10,7 +10,7 @@ interface CollectionModalProps {
 
 const CollectionModal = ({ title, category }: CollectionModalProps) => {
   return (
-    <section className="flex flex-col mt-14 max-md:items-center bg-gradient-to-tr from-purple-400 via-blue-300 to-fuchsia-300 md:p-12 w-full px-8 py-8 rounded-2xl shadow-lg text-gray-700">
+    <section className="flex flex-col mt-14 max-md:items-center bg-gradient-to-tr from-slate-600 via-blue-900 to-stone-500 md:p-12 w-full px-8 py-8 rounded-2xl shadow-lg text-gray-200">
       <h1 className="text-5xl font-bold mx-auto pb-20 tracking-wider max-md:text-center">
         {title}
       </h1>
@@ -35,10 +35,10 @@ const CollectionModal = ({ title, category }: CollectionModalProps) => {
               />
             </div>
             <div className="flex flex-col">
-              <h1 className="text-lg tracking-wider text-slate-800 font-semibold">
+              <h1 className="text-lg tracking-wider text-slate-200 font-semibold">
                 {product.name}
               </h1>
-              <span className="text-slate-600">${product.price}</span>
+              <span className="text-slate-100">${product.price}</span>
             </div>
           </Link>
         ))}

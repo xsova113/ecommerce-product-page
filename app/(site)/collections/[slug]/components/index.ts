@@ -1,8 +1,9 @@
 import ProductImages from "./ProductImages";
 import ProductDescription from "./ProductDescription";
 import ProductButtons from "./ProductButtons";
-import MobileNavItems from "./MobileNavItems";
-import LgScreenNavItems from "./LgScreenNavItems";
+import MobileNavItems from "../../../components/MobileNavItems";
+import LgScreenNavItems from "../../../components/LgScreenNavItems";
+import YouMayAlsoLike from "./YouMayAlsoLike";
 
 export {
   ProductImages,
@@ -10,4 +11,5 @@ export {
   ProductButtons,
   MobileNavItems,
   LgScreenNavItems,
+  YouMayAlsoLike,
 };

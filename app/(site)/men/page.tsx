@@ -8,13 +8,14 @@ const Men = async () => {
     await client.fetch(`*[_type == "category" && name == "Men"] {
     products[] -> {...}
 }[0]`);
-  const banner = await client.fetch(
-    `*[_type == "banner" && name == "collection banner"][0]`
-  );
+  const banner = await client.fetch(`*[_type == "banner" && name == "men"][0]`);
 
   return (
     <section className="pt-32 flex flex-col items-center">
-      <BannerModal banner={banner} />
+      <BannerModal
+        banner={banner}
+        customContainerStyle="bg-gradient-to-r from-blue-500 via-sky-500 to-blue-200"
+      />
       <CollectionModal title="Sneakers for Men" category={products} />
     </section>
   );

@@ -23,7 +23,7 @@ const ReadMore = ({ banner }: { banner: CollectionBanner }) => {
             </div>
           ))}
         </div>
-        <span className="self-start animate-bounce relative right-32">
+        <span className="self-start animate-bounce absolute left-[360px]">
           <AiFillDownCircle size={35} />
         </span>
         <div className="flex flex-col md:flex-1 text-center md:text-start md:gap-12 gap-8 justify-end">

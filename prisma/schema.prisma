@@ -25,3 +25,10 @@ model CartItem {
   image     String
   createdAt DateTime @default(now())
 }
+
+model SubmissionForm {
+  id          Int     @id @default(autoincrement())
+  email       String
+  subject     String?
+  description String
+}

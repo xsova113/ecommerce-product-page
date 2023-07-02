@@ -2,9 +2,21 @@ import { urlFor } from "@/sanity/lib/image";
 import { CollectionBanner } from "@/types";
 import Image from "next/image";
 
-const BannerModal = ({ banner }: { banner: CollectionBanner }) => {
+const BannerModal = ({
+  banner,
+  customContainerStyle,
+}: {
+  banner: CollectionBanner;
+  customContainerStyle?: string;
+}) => {
   return (
-    <section className="md:p-10 px-4 py-8 bg-gradient-to-br from-violet-200 via-purple-200 to-blue-200 rounded-2xl w-full shadow-lg text-gray-700">
+    <section
+      className={`md:p-10 px-4 py-8  ${
+        customContainerStyle
+          ? customContainerStyle
+          : "bg-gradient-to-br from-gray-700 via-stone-700 to-slate-700"
+      } rounded-2xl w-full shadow-lg text-gray-200`}
+    >
       <div className="flex flex-col md:flex-row md:gap-20 justify-center items-center">
         <div className="md:snap-y snap-x snap-mandatory gap-32 md:py-12 overflow-y-scroll flex flex-col h-[400px] md:flex-1">
           {banner.image.map((image, index) => (
@@ -24,10 +36,10 @@ const BannerModal = ({ banner }: { banner: CollectionBanner }) => {
         </div>
 
         <div className="flex flex-col md:flex-1 text-center md:text-start justify-end">
-          <h1 className="md:text-6xl text-4xl font-black uppercase tracking-widest md:mb-20 mb-12">
+          <h1 className="md:text-6xl text-5xl font-black uppercase tracking-widest md:mb-20 mb-12">
             {banner.largeText1}
           </h1>
-          <span className="md:text-4xl text-3xl mb-8">
+          <span className="md:text-4xl text-4xl mb-8">
             <span className="text-red-500 font-extrabold">
               {banner.discount}
             </span>

@@ -15,7 +15,7 @@ import { UserButton, useAuth } from "@clerk/nextjs";
 import { Toaster } from "react-hot-toast";
 import { CartItem } from "@prisma/client";
 import { GuestCartItemType } from "@/types";
-import getCartitem from "../../server/getCartItem";
+import getCartitem from "../../action/getCartItem";
 
 const NavBar = () => {
   const navItems = ["Collections", "Men", "Women", "About", "Contact"];
@@ -62,12 +62,12 @@ const NavBar = () => {
 
   return (
     <header>
-      <Toaster />
-      <nav className="fixed inset-0 pt-6 mx-16 px-10 h-20 backdrop-blur border border-white shadow-xl rounded-b-3xl bg-black/30 z-50">
-        <div
+       <div
           className={`absolute inset-0 ${cartOpen ? "block" : "hidden"}`}
           onClick={() => setCartOpen(false)}
         />
+      <Toaster />
+      <nav className="fixed inset-0 pt-6 sm:mx-12 px-4 sm:px-12 h-20 backdrop-blur border border-white shadow-xl rounded-b-3xl bg-black/30 z-50">
         <div className="pb-6">
           <MobileNavItems navItems={navItems} />
           <div className="flex items-center">
@@ -98,7 +98,7 @@ const NavBar = () => {
                 >
                   <AiOutlineShoppingCart
                     size={30}
-                    className="hover:fill-black text-gray-500"
+                    className="hover:fill-gray-500 text-white transition"
                   />
                   <span
                     className={`flex justify-center text-[11px] items-center rounded-xl absolute px-2 bg-red-500 -top-1 -right-1 text-white ${
@@ -109,10 +109,10 @@ const NavBar = () => {
                   </span>
                 </button>
                 <div
-                  className={`hidden sm:block absolute rounded-2xl -right-[200%] top-[85px] sm:top-14 sm:-right-[130px] bg-white shadow-2xl ${
+                  className={`border border-white hidden sm:block absolute z-50 backdrop-blur bg-zinc-500/90 rounded-2xl -right-[200%] top-[85px] sm:top-14 sm:-right-[130px] shadow-2xl ${
                     cartOpen
-                      ? "translate-y-0 opacity-100 z-50"
-                      : "-translate-y-[300%] opacity-0"
+                      ? "translate-y-0 z-50"
+                      : "-translate-y-[500%] opacity-0"
                   } ease-in-out duration-500`}
                 >
                   <CartBox />
@@ -145,10 +145,10 @@ const NavBar = () => {
           {/* Carb Box Mobile view */}
           <div className="sm:hidden flex justify-center">
             <div
-              className={`block w-[90%] h-60 bg-white shadow-2xl rounded-xl ${
+              className={`block w-[90%] h-60 border border-white bg-stone-600/90 shadow-2xl rounded-xl ${
                 cartOpen
-                  ? "absolute translate-y-0 top-[120px] opacity-100"
-                  : "absolute -translate-y-full opacity-0 -z-50"
+                  ? "absolute translate-y-0 top-[100px] opacity-100"
+                  : "absolute -translate-y-[500%] opacity-0 -z-50"
               } transition duration-300`}
             >
               <CartBox />

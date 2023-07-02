@@ -9,7 +9,7 @@ import { urlFor } from "@/sanity/lib/image";
 interface LightBoxProps {
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
-  product?: ProductType | any;
+  product?: ProductType;
 }
 
 const LightBox: React.FC<LightBoxProps> = ({ isOpen, setIsOpen, product }) => {
@@ -41,16 +41,17 @@ const LightBox: React.FC<LightBoxProps> = ({ isOpen, setIsOpen, product }) => {
             />
           </div>
           <div className="flex items-center">
-            <div className="relative w-[500px] h-[500px] sm:rounded-lg"> 
+            <div className="relative w-[500px] h-[500px] sm:rounded-lg bg-white/30 backdrop-blur">
               <Image
                 src={
                   product?.image
-                    ? urlFor(product.image[isSelected]).url()
+                    ? // @ts-ignore
+                      urlFor(product.image[isSelected]).url()
                     : "/images/blur-img.png"
                 }
                 alt="product-image"
                 fill
-                className="sm:rounded-xl object-cover"
+                className="sm:rounded-xl object-contain"
               />
             </div>
 
@@ -58,11 +59,13 @@ const LightBox: React.FC<LightBoxProps> = ({ isOpen, setIsOpen, product }) => {
               size={40}
               className="absolute fill-black hover:fill-[#FF7D1A] -right-5 bg-white rounded-full p-2 w-12 h-12 cursor-pointer transition select-none"
               onClick={() => {
-                if (isSelected >= 3) {
-                  setIsSelected(0);
-                  return;
+                if (product?.image) {
+                  if (isSelected >= product?.image?.length - 1) {
+                    setIsSelected(0);
+                    return;
+                  }
+                  setIsSelected((prev) => ++prev);
                 }
-                setIsSelected((prev) => ++prev);
               }}
             />
 
@@ -70,10 +73,12 @@ const LightBox: React.FC<LightBoxProps> = ({ isOpen, setIsOpen, product }) => {
               size={40}
               className="absolute fill-black hover:fill-[#FF7D1A] -left-5 bg-white rounded-full p-2 w-12 h-12 cursor-pointer transition select-none"
               onClick={() => {
-                if (isSelected < 1) {
-                  setIsSelected(4);
+                if (product?.image) {
+                  if (isSelected < product?.image?.length) {
+                    setIsSelected(product?.image?.length);
+                  }
+                  setIsSelected((prev) => --prev);
                 }
-                setIsSelected((prev) => --prev);
               }}
             />
           </div>

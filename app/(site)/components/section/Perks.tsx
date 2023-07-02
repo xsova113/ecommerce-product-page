@@ -4,7 +4,7 @@ import { FaShippingFast } from "react-icons/fa";
 
 const Perks = () => {
   return (
-    <div className="flex flex-col sm:flex-row justify-between sm:py-28 max-sm:gap-16 items-center">
+    <div className="flex flex-col sm:flex-row justify-between sm:px-8 py-8 max-sm:gap-16 items-center bg-gray-200 rounded-2xl shadow-xl">
       <div className="flex items-center gap-3">
         <SiAdguard size={60} color="red" />
         <div className="flex flex-col gap-3">
