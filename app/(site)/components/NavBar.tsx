@@ -62,10 +62,10 @@ const NavBar = () => {
 
   return (
     <header>
-       <div
-          className={`absolute inset-0 ${cartOpen ? "block" : "hidden"}`}
-          onClick={() => setCartOpen(false)}
-        />
+      <div
+        className={`absolute inset-0 ${cartOpen ? "block" : "hidden"}`}
+        onClick={() => setCartOpen(false)}
+      />
       <Toaster />
       <nav className="fixed inset-0 pt-6 sm:mx-12 px-4 sm:px-12 h-20 backdrop-blur border border-white shadow-xl rounded-b-3xl bg-black/30 z-50">
         <div className="pb-6">

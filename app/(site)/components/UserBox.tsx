@@ -31,7 +31,7 @@ const UserBox = ({ isOpen, closeAvatar }: UserBoxProps) => {
 
         <div className="flex flex-col items-start mb-6">
           <Link
-            href={"/register"}
+            href={"/sign-up"}
             className="flex gap-8 transition w-full hover:bg-gray-100 pl-8 text-gray-600 text-sm py-4 cursor-pointer"
             onClick={closeAvatar}
           >
