@@ -4,6 +4,7 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { ProductType } from "@/types";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { AiFillRightCircle, AiFillLeftCircle } from "react-icons/ai";
 
@@ -30,7 +31,11 @@ const YouMayAlsoLike = () => {
         className="flex overflow-scroll w-screen gap-6 px-12 no-scrollbar"
       >
         {products.map((item) => (
-          <div key={item._id} className="flex flex-col mb-8">
+          <Link
+            href={`/collections/${item?.slug?.current}`}
+            key={item._id}
+            className="flex flex-col mb-8"
+          >
             <div className="relative w-[250px] h-[300px] border rounded-lg bg-gray-100 shadow-lg mt-6 mb-2">
               <Image // @ts-ignore
                 src={urlFor(item.image[0]).url()}
@@ -41,7 +46,7 @@ const YouMayAlsoLike = () => {
             </div>
             <h1 className="font-semibold text-gray-800">{item.name}</h1>
             <span className="text-sm text-gray-600">${item.price}</span>
-          </div>
+          </Link>
         ))}
         <button
           className="absolute right-12 text-red-700/80 self-center"
