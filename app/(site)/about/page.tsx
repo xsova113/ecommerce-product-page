@@ -15,7 +15,10 @@ const About = () => {
         </div>
         <div className="text-gray-800 flex-1">
           <h1 className="text-3xl font-bold uppercase tracking-wider pb-2 mb-10 border-b ">
-            Introducing Sneakers – Unleash Your Full Potential
+            Introducing Sneakers –{" "}
+            <span className="text-2xl font-semibold">
+              Unleash Your Full Potential
+            </span>
           </h1>
           <p className="text-gray-600 w-4/5">
             At Sneakers, we believe that every step you take is a chance to
