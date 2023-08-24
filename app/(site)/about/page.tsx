@@ -15,12 +15,15 @@ const About = () => {
         </div>
         <div className="text-gray-800 flex-1">
           <h1 className="text-3xl font-bold uppercase tracking-wider pb-2 mb-10 border-b ">
-            how it started
+            Introducing Sneakers – Unleash Your Full Potential
           </h1>
           <p className="text-gray-600 w-4/5">
-            Adipisicing Lorem sunt sit nulla pariatur. Ut proident dolore dolore
-            nulla. Excepteur amet labore pariatur voluptate quis nulla sint
-            aliqua sit labore cillum labore.
+            At Sneakers, we believe that every step you take is a chance to
+            break boundaries, redefine limits, and push towards excellence. We
+            understand the relentless dedication of athletes, both men and
+            women, who strive for greatness day in and day out. That&apos;s why
+            we&apos;ve crafted a sneaker brand that aligns with your unwavering
+            commitment to performance and style.
           </p>
         </div>
       </div>
