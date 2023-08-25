@@ -5,12 +5,13 @@ const About = () => {
   return (
     <section className="flex flex-col pt-32 items-center">
       <div className="flex flex-col md:flex-row items-center gap-8">
-        <div className="relative w-[350px] sm:flex-1 h-[350px] sm:h-[450px] md:h-[550px] bg-gradient-to-tr from-slate-500 via-stone-500 to-sky-950 rounded-2xl shadow-2xl p-4">
+        <div className="relative flex justify-center items-center w-[350px] sm:flex-1 h-[350px] sm:h-[450px] md:h-[550px] bg-gradient-to-tr from-slate-500 via-stone-500 to-sky-950 rounded-2xl shadow-2xl p-4">
           <Image
             src={"/images/sneakerlogo.png"}
             alt="about image"
-            fill
-            className="object-contain"
+            width={400}
+            height={400}
+            className="object-contain mt-10"
           />
         </div>
         <div className="text-gray-800 flex-1">
