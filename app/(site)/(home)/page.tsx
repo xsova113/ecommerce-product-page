@@ -6,9 +6,9 @@ import {
   ReadMore,
   NewRelease,
   Subscribe,
-} from "./components/section";
+} from "../components/section";
 
-const Home = async () => {
+const HomePage = async () => {
   const products = await client.fetch('*[_type == "product"]');
   const bannerData = await client.fetch(
     `*[_type == "banner" && name == "home banner"][0]`
@@ -33,4 +33,4 @@ const Home = async () => {
   );
 };
 
-export default Home;
+export default HomePage;

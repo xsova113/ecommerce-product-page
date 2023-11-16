@@ -1,4 +1,3 @@
-
 import NavBar from "./components/NavBar";
 import "./globals.css";
 import { Kumbh_Sans } from "next/font/google";
@@ -19,8 +18,10 @@ export default function RootLayout({
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta name="description" content="Created by George Chang" />
       <link rel="icon" href="./images/favicon-32x32.png" />
-      <ClerkProvider appearance={{variables:{colorPrimary: "black"}}}>
-        <body className={`${kumbh.className} min-h-screen text-[16px] my-6 px-4 sm:px-12 lg:px-24 overflow-x-hidden`}>
+      <ClerkProvider appearance={{ variables: { colorPrimary: "black" } }}>
+        <body
+          className={`${kumbh.className} my-6 min-h-screen overflow-x-hidden px-4 text-[16px] sm:px-12 lg:px-24`}
+        >
           <StateContext>
             <NavBar />
             {children}

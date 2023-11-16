@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import Image from "next/image";
@@ -16,11 +17,13 @@ import { Toaster } from "react-hot-toast";
 import { CartItem } from "@prisma/client";
 import { GuestCartItemType } from "@/types";
 import getCartitem from "../../action/getCartItem";
+import { useRouter } from "next/navigation";
 
 const NavBar = () => {
   const navItems = ["Collections", "Men", "Women", "About", "Contact"];
   const [avatarOpen, setAvatarOpen] = useState(false);
   const user = useAuth();
+  const router = useRouter();
 
   const {
     qty,
@@ -56,7 +59,7 @@ const NavBar = () => {
 
   useEffect(() => {
     setGuestCartItems(
-      JSON.parse(localStorage.getItem("guestCartItems") || "[]")
+      JSON.parse(localStorage.getItem("guestCartItems") || "[]"),
     );
   }, [user.userId, getCartitem]);
 
@@ -67,7 +70,7 @@ const NavBar = () => {
         onClick={() => setCartOpen(false)}
       />
       <Toaster />
-      <nav className="fixed inset-0 pt-6 sm:mx-12 px-4 sm:px-12 h-20 backdrop-blur border border-white shadow-xl rounded-b-3xl bg-black/30 z-50">
+      <nav className="fixed inset-0 z-50 h-20 rounded-b-3xl border border-white bg-black/30 px-4 pt-6 shadow-xl backdrop-blur sm:mx-12 sm:px-12">
         <div className="pb-6">
           <MobileNavItems navItems={navItems} />
           <div className="flex items-center">
@@ -76,19 +79,22 @@ const NavBar = () => {
               alt="menu"
               width={55}
               height={55}
-              className="lg:hidden sm:w-[30px] sm:h-[25px] block mr-4 sm:mr-6 w-auto h-auto cursor-pointer"
-              onClick={() => setOpen(true)}
+              className="mr-4 block h-auto w-auto cursor-pointer sm:mr-6 sm:h-[25px] sm:w-[30px] lg:hidden"
+              onClick={() => {
+                router.push("/");
+                setOpen(true);
+              }}
             />
             <Link
               href={"/"}
-              className="relative sm:w-[300px] sm:h-[25px] w-[120px] h-[20px]"
+              className="relative h-[20px] w-[120px] sm:h-[25px] sm:w-[300px]"
             >
               <Image src={"/images/logo.svg"} alt="logo" fill />
             </Link>
 
             <LgScreenNavItems navItems={navItems} />
 
-            <div className="flex w-full sm:gap-10 gap-6 justify-end items-baseline">
+            <div className="flex w-full items-baseline justify-end gap-6 sm:gap-10">
               <div className="relative">
                 <button
                   onClick={() => {
@@ -98,10 +104,10 @@ const NavBar = () => {
                 >
                   <AiOutlineShoppingCart
                     size={30}
-                    className="hover:fill-gray-500 text-white transition"
+                    className="text-white transition hover:fill-gray-500"
                   />
                   <span
-                    className={`flex justify-center text-[11px] items-center rounded-xl absolute px-2 bg-red-500 -top-1 -right-1 text-white ${
+                    className={`absolute -right-1 -top-1 flex items-center justify-center rounded-xl bg-red-500 px-2 text-[11px] text-white ${
                       user.isSignedIn && cartItems.length === 0 && "hidden"
                     }`}
                   >
@@ -109,11 +115,11 @@ const NavBar = () => {
                   </span>
                 </button>
                 <div
-                  className={`border border-white hidden sm:block absolute z-50 backdrop-blur bg-zinc-500/90 rounded-2xl -right-[200%] top-[85px] sm:top-14 sm:-right-[130px] shadow-2xl ${
+                  className={`absolute -right-[200%] top-[85px] z-50 hidden rounded-2xl border border-white bg-zinc-500/90 shadow-2xl backdrop-blur sm:-right-[130px] sm:top-14 sm:block ${
                     cartOpen
-                      ? "translate-y-0 z-50"
+                      ? "z-50 translate-y-0"
                       : "-translate-y-[500%] opacity-0"
-                  } ease-in-out duration-500`}
+                  } duration-500 ease-in-out`}
                 >
                   <CartBox />
                 </div>
@@ -127,7 +133,7 @@ const NavBar = () => {
                       alt="avatar"
                       height={30}
                       width={30}
-                      className="w-auto h-auto hover:ring-[#FF7D1A] ring-2 ring-transparent rounded-full cursor-pointer transition"
+                      className="h-auto w-auto cursor-pointer rounded-full ring-2 ring-transparent transition hover:ring-[#FF7D1A]"
                       onClick={handleClick}
                     />
                   </>
@@ -143,12 +149,12 @@ const NavBar = () => {
           </div>
 
           {/* Carb Box Mobile view */}
-          <div className="sm:hidden flex justify-center">
+          <div className="flex justify-center sm:hidden">
             <div
-              className={`block w-[90%] h-60 border border-white bg-stone-600/90 shadow-2xl rounded-xl ${
+              className={`block h-60 w-[90%] rounded-xl border border-white bg-stone-600/90 shadow-2xl ${
                 cartOpen
-                  ? "absolute translate-y-0 top-[100px] opacity-100"
-                  : "absolute -translate-y-[500%] opacity-0 -z-50"
+                  ? "absolute top-[100px] translate-y-0 opacity-100"
+                  : "absolute -z-50 -translate-y-[500%] opacity-0"
               } transition duration-300`}
             >
               <CartBox />
