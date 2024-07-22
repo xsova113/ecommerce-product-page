@@ -39,7 +39,7 @@ const Success = () => {
           </a>
         </p>
         <Link href="/">
-          <button type="button" className="w-[300px] btn">
+          <button type="button" className="btn w-[300px]">
             Contine shopping
           </button>
         </Link>

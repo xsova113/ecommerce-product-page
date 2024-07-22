@@ -67,7 +67,9 @@ const NavBar = () => {
   return (
     <header>
       <div
-        className={`absolute inset-0 ${cartOpen ? "block" : "hidden"}`}
+        className={`absolute inset-0 z-[99999] ${
+          cartOpen ? "block" : "hidden"
+        }`}
         onClick={() => setCartOpen(false)}
       />
       <Toaster />

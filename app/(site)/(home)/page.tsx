@@ -7,14 +7,15 @@ import {
   NewRelease,
   Subscribe,
 } from "../components/section";
+import { Button } from "../components/ui/Button";
 
 const HomePage = async () => {
   const products = await client.fetch('*[_type == "product"]');
   const bannerData = await client.fetch(
-    `*[_type == "banner" && name == "home banner"][0]`
+    `*[_type == "banner" && name == "home banner"][0]`,
   );
   const readMoreBanner = await client.fetch(
-    `*[_type == "banner" && name == "read more"][0]`
+    `*[_type == "banner" && name == "read more"][0]`,
   );
   const { products: newRelease } =
     await client.fetch(`*[_type == "category" && name == "New Release"] {
