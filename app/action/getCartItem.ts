@@ -9,6 +9,7 @@ export default async function getCartitem(userId: string) {
         userId,
       },
     });
+
     return cartItem;
   } catch (error: any) {
     return error.message;

@@ -12,12 +12,13 @@ import {
   MobileNavItems,
 } from "../collections/[slug]/components";
 import { useStateContext } from "../../context/StateContext";
-import { UserButton, useAuth } from "@clerk/nextjs";
+import { SignInButton, UserButton, useAuth } from "@clerk/nextjs";
 import { Toaster } from "react-hot-toast";
 import { CartItem } from "@prisma/client";
 import { GuestCartItemType } from "@/types";
 import getCartitem from "../../action/getCartItem";
 import { useRouter } from "next/navigation";
+import { Button } from "@headlessui/react";
 
 const NavBar = () => {
   const navItems = ["Collections", "Men", "Women", "About", "Contact"];
@@ -37,9 +38,9 @@ const NavBar = () => {
     setGuestCartItems,
   } = useStateContext();
 
-  const handleClick = () => {
-    setAvatarOpen((prev) => !prev);
-  };
+  // const handleClick = () => {
+  //   setAvatarOpen((prev) => !prev);
+  // };
 
   useEffect(() => {
     if (user.userId) {
@@ -91,7 +92,6 @@ const NavBar = () => {
             >
               <Image src={"/images/logo.svg"} alt="logo" fill />
             </Link>
-
             <LgScreenNavItems navItems={navItems} />
 
             <div className="flex w-full items-baseline justify-end gap-6 sm:gap-10">
@@ -127,23 +127,28 @@ const NavBar = () => {
 
               <div className="ml-5">
                 {!user.isSignedIn && (
-                  <>
-                    <Image
-                      src={"/images/user_placeholder.jpg"}
-                      alt="avatar"
-                      height={30}
-                      width={30}
-                      className="h-auto w-auto cursor-pointer rounded-full ring-2 ring-transparent transition hover:ring-[#FF7D1A]"
-                      onClick={handleClick}
-                    />
-                  </>
+                  <SignInButton
+                    mode="modal"
+                    afterSignInUrl={"/"}
+                    afterSignUpUrl={"/"}
+                  >
+                    <button>
+                      <Image
+                        src={"/images/user_placeholder.jpg"}
+                        alt="avatar"
+                        height={30}
+                        width={30}
+                        className="h-auto w-auto cursor-pointer rounded-full ring-2 ring-transparent transition hover:ring-[#FF7D1A]"
+                      />
+                    </button>
+                  </SignInButton>
                 )}
                 <UserBox
                   isOpen={avatarOpen}
                   closeAvatar={() => setAvatarOpen(false)}
                 />
 
-                <UserButton />
+                <UserButton afterSignOutUrl="/sign-up" />
               </div>
             </div>
           </div>

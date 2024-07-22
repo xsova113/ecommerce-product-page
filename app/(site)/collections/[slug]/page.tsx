@@ -37,7 +37,7 @@ const Product = () => {
         { params }
       )
       .then((data) => setProduct(data));
-  }, []);
+  }, [params]);
 
   return (
     <section className="flex flex-col items-center">
