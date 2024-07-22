@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
+import { useRef } from "react";
+import { useOnClickOutside } from "usehooks-ts";
 import Image from "next/image";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import CartBox from "./CartBox";
@@ -19,12 +21,14 @@ import { GuestCartItemType } from "@/types";
 import getCartitem from "../../action/getCartItem";
 import { useRouter } from "next/navigation";
 import { Button } from "@headlessui/react";
+import { cn } from "@/libs/utils";
 
 const NavBar = () => {
   const navItems = ["Collections", "Men", "Women", "About", "Contact"];
   const [avatarOpen, setAvatarOpen] = useState(false);
   const user = useAuth();
   const router = useRouter();
+  const ref = useRef(null);
 
   const {
     qty,
@@ -37,6 +41,12 @@ const NavBar = () => {
     guestCartItems,
     setGuestCartItems,
   } = useStateContext();
+
+  const handleClickOutside = () => {
+    setCartOpen(false);
+  };
+
+  useOnClickOutside(ref, handleClickOutside);
 
   // const handleClick = () => {
   //   setAvatarOpen((prev) => !prev);
@@ -66,12 +76,10 @@ const NavBar = () => {
 
   return (
     <header>
-      <div
-        className={`absolute inset-0 z-[99999] ${
-          cartOpen ? "block" : "hidden"
-        }`}
+      {/* <div
+        className={`inset-0 z-[100] ${cartOpen ? "absolute" : "hidden"}`}
         onClick={() => setCartOpen(false)}
-      />
+      /> */}
       <Toaster />
       <nav className="fixed inset-0 z-50 h-20 rounded-b-3xl border border-white bg-black/30 px-4 pt-6 shadow-xl backdrop-blur sm:mx-12 sm:px-12">
         <div className="pb-6">
@@ -101,7 +109,7 @@ const NavBar = () => {
                 <button
                   onClick={() => {
                     fetchCartItem();
-                    setCartOpen((preValue: boolean) => !preValue);
+                    setCartOpen((prev: boolean) => !prev);
                   }}
                 >
                   <AiOutlineShoppingCart
@@ -117,11 +125,13 @@ const NavBar = () => {
                   </span>
                 </button>
                 <div
-                  className={`absolute -right-[200%] top-[85px] z-50 hidden rounded-2xl border border-white bg-zinc-500/90 shadow-2xl backdrop-blur sm:-right-[130px] sm:top-14 sm:block ${
+                  ref={ref}
+                  className={cn(
+                    "absolute -right-[200%] top-[85px] z-[999999] hidden rounded-2xl border border-white bg-zinc-500/90 shadow-2xl backdrop-blur duration-500 ease-in-out sm:-right-[130px] sm:top-14 sm:block",
                     cartOpen
-                      ? "z-50 translate-y-0"
-                      : "-translate-y-[500%] opacity-0"
-                  } duration-500 ease-in-out`}
+                      ? "translate-y-0"
+                      : "-translate-y-[500%] opacity-0",
+                  )}
                 >
                   <CartBox />
                 </div>

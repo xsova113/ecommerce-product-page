@@ -20,12 +20,12 @@ const CartBox = () => {
     useStateContext();
   const { userId } = useAuth();
 
-  const totalPrice = cartItems
-    .map((item: CartItem) => (item.price / 2) * item.qty)
+  const totalPrice = (cartItems as Array<any>)
+    ?.map((item: CartItem) => (item.price / 2) * item.qty)
     .reduce((a: number, b: number) => a + b, 0);
 
-  const totalGuestPrice = guestCartItems
-    .map((item: GuestCartItemType) => (item.price / 2) * item.qty)
+  const totalGuestPrice = (guestCartItems as Array<any>)
+    ?.map((item: GuestCartItemType) => (item.price / 2) * item.qty)
     .reduce((a: number, b: number) => a + b, 0);
 
   const handleRemove = (item: any) => {
@@ -64,8 +64,8 @@ const CartBox = () => {
   };
 
   return (
-    <div className="rounded-xl sm:w-[400px] text-white">
-      <div className="flex flex-col py-4 px-5">
+    <div className="rounded-xl text-white sm:w-[400px]">
+      <div className="flex flex-col px-5 py-4">
         <h1 className="font-bold text-white">Cart</h1>
       </div>
       <hr className="w-full" />
@@ -76,7 +76,7 @@ const CartBox = () => {
           (item: CartItem | GuestCartItemType | any, index: number) => (
             <div key={item.id || index} className="border-b">
               <div className="flex flex-col">
-                <div className="flex py-4 px-4 items-center justify-between">
+                <div className="flex items-center justify-between px-4 py-4">
                   <Image
                     src={urlFor(item.image || imagePlaceholder).url()}
                     alt="thumbnail"
@@ -85,19 +85,19 @@ const CartBox = () => {
                     className="rounded-md"
                   />
                   <div className="flex flex-col">
-                    <span className="text-sm text-gray-100 font-semibold capitalize">
+                    <span className="text-sm font-semibold capitalize text-gray-100">
                       {item.name.replace("-", " ")}
                     </span>
                     <span className="text-sm text-gray-100">
                       {item.price / 2} x {item.qty}&nbsp;
-                      <span className="text-white font-bold">
+                      <span className="font-bold text-white">
                         ${((item.price / 2) * item.qty).toFixed(2) || 0}
                       </span>
                     </span>
                   </div>
                   <button>
                     <FaTrashAlt
-                      className="fill-white hover:fill-gray-200 transition cursor-pointer"
+                      className="cursor-pointer fill-white transition hover:fill-gray-200"
                       onClick={() => {
                         if (userId) {
                           handleRemove(item);
@@ -111,11 +111,11 @@ const CartBox = () => {
               </div>
               <div />
             </div>
-          )
+          ),
         )
       ) : (
         <div className="flex justify-center py-[70px]">
-          <h1 className="text-gray-100 font-bold text-lg">
+          <h1 className="text-lg font-bold text-gray-100">
             Your cart is empty.
           </h1>
         </div>
@@ -123,7 +123,7 @@ const CartBox = () => {
 
       {((userId && cartItems.length) || (!userId && guestCartItems.length)) >
         0 && (
-        <div className="flex flex-col mt-4">
+        <div className="mt-4 flex flex-col">
           <div className="flex justify-center gap-2">
             <h1 className="text-sm font-bold">Total Price:</h1>
             <span className="text-sm text-gray-100">
@@ -133,9 +133,9 @@ const CartBox = () => {
                 : Number(totalGuestPrice).toFixed(2)}
             </span>
           </div>
-          <div className="w-full flex pb-5 justify-center">
+          <div className="flex w-full justify-center pb-5">
             <button
-              className="py-3 px-14 mt-4 text-white rounded-lg font-semibold bg-red-500 hover:scale-110 active:bg-red-500/80 transition"
+              className="mt-4 rounded-lg bg-red-500 px-14 py-3 font-semibold text-white transition hover:scale-110 active:bg-red-500/80"
               onClick={handleCheckout}
             >
               Checkout
